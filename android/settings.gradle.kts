@@ -1,9 +1,13 @@
 import java.util.Properties
+import java.io.File
 
 pluginManagement {
     val flutterSdkPath = run {
         val properties = Properties()
-        file("local.properties").inputStream().use { properties.load(it) }
+        val localPropertiesFile = File("local.properties")
+        if (localPropertiesFile.exists()) {
+            localPropertiesFile.inputStream().use { properties.load(it) }
+        }
         val flutterSdkPath = properties.getProperty("flutter.sdk")
         require(flutterSdkPath != null) { "flutter.sdk not set in local.properties" }
         flutterSdkPath
@@ -27,19 +31,12 @@ plugins {
 
 include(":app")
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-val newBuildDir: Directory = rootProject.layout.buildDirectory.dir("../../build").get()
-rootProject.layout.buildDirectory.value(newBuildDir)
+val newBuildDir: File = rootProject.layout.buildDirectory.asFile.get().parentFile.parentFile.resolve("build")
+rootProject.layout.buildDirectory.set(newBuildDir.asDirectory)
 
 subprojects {
-    val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
-    project.layout.buildDirectory.value(newSubprojectBuildDir)
+    val newSubprojectBuildDir: File = newBuildDir.resolve(project.name)
+    project.layout.buildDirectory.set(newSubprojectBuildDir.asDirectory)
 }
 
 subprojects {
