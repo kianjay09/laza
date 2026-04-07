@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "542888105682",
+    "project_id": "laza-a07a2",
+    "storage_bucket": "laza-a07a2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542888105682:android:6c03bb8a5696b35f1dbf0b",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJgV4wnNmuHFL5tNmpN5K3H6Lxq1y4Ujo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
